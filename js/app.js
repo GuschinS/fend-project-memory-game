@@ -12,8 +12,15 @@ const icons = ['diamond', 'paper-plane-o', 'anchor', 'bolt', 'cube', 'leaf', 'bi
 
 const deck = document.querySelector('.deck');
 const restart = document.querySelector('.restart');
-let clicks = 0;
 
+let clicks = 0;
+let checkArrey = [];
+
+/*
+ *
+ * Create card
+ *
+ */
 
 
 function createCard() {
@@ -21,55 +28,74 @@ function createCard() {
 	for (var i = 0; i < cards.length; i++) {
 		const li = '<li class="card"><i class="fa fa-' + cards[i] + '"></i></li>';
 		deck.insertAdjacentHTML('beforeend', li);
-		//		console.log(li);
 	};
+	liCards = document.querySelectorAll('.card');
+	clickCard();
 };
 
 /*
+ *
  * Click card
+ *
  */
 
-deck.addEventListener('click', function (event) {
-	event.preventDefault();
-	let checkCard = event.target;
-	if (checkCard.nodeName === 'LI') {
-		if (clicks < 2) {
-			checkCard.setAttribute('class', 'card open show');
-			if (clicks < 1) {
-				const card1 = checkCard.firstChild.className;
-				console.log(card1);
-			} else {
-				(clicks < 2)
-				const card2 = checkCard.firstChild.className;
-				console.log(card2);
-				//				if (card1 == card2) {
-				//					console.log('+');
-				//					let li = document.querySelectorAll('.card');
-				//					li.setAttribute('class', 'card match')
-				//				} else {
-				//					console.log('-')
-				//					let li = document.querySelectorAll('.card');
-				//					li.setAttribute('class', 'card')
+function clickCard() {
+	for (let i = 0; i < liCards.length; i++) {
+		liCards[i].addEventListener('click', function (event) {
+			event.preventDefault();
+			let checkCard = event.target;
+			if (checkCard.nodeName === 'LI') {
+				if (clicks < 2) {
+					checkCard.setAttribute('class', 'card open show');
+					checkArrey.push(liCards[i].firstChild.className);
+					console.log(liCards[i].firstChild.className);
+					console.log(checkArrey);
+					clicks += 1;
+					console.log(clicks);
+				}
+				setTimeout(comparison, 1400);
 			}
-
-			clicks += 1;
-			console.log(clicks);
-		}
+		});
 	}
-});
+}
 
 /*
- * Check
+ *
+ * Comparison
+ *
  */
 
+function comparison() {
+	if (checkArrey.length === 2) {
+		if (checkArrey[0] === checkArrey[1]) {
+			open = document.querySelectorAll('.open');
+			for (let i = 0; i < open.length; i++) {
+				open[i].setAttribute('class', 'card match');
+			}
+			clicks = 0;
+			console.log('yes');
+		} else {
+			open = document.querySelectorAll('.open');
+			for (let i = 0; i < open.length; i++) {
+				open[i].classList.remove('open', 'show');
+			}
+			clicks = 0;
+			console.log('no');
+		}
+		checkArrey = [];
+	}
+}
 
 /*
+ *
  * Restart
+ *
  */
 
 restart.addEventListener('click', function (event) {
 	event.preventDefault();
 	deck.innerHTML = "";
+	checkArrey = [];
 	clicks = 0;
 	createCard();
 })
