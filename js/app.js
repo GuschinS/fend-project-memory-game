@@ -12,7 +12,7 @@ const icons = ['diamond', 'paper-plane-o', 'anchor', 'bolt', 'cube', 'leaf', 'bi
 
 const deck = document.querySelector('.deck');
 const restart = document.querySelector('.restart');
-
+//let open = document.querySelectorAll('.open');
 let clicks = 0;
 let checkArrey = [];
 
@@ -44,16 +44,18 @@ function clickCard() {
 		liCards[i].addEventListener('click', function (event) {
 			event.preventDefault();
 			let checkCard = event.target;
-			if (checkCard.nodeName === 'LI') {
-				if (clicks < 2) {
-					checkCard.setAttribute('class', 'card open show');
-					checkArrey.push(liCards[i].firstChild.className);
-					console.log(liCards[i].firstChild.className);
-					console.log(checkArrey);
-					clicks += 1;
-					console.log(clicks);
-				}
-				setTimeout(comparison, 1400);
+			if (checkCard.nodeName === 'LI' && checkCard.className !== 'card open show' && checkCard.className !== 'card match') {
+					console.log (checkCard.className)
+					if (clicks < 2) {
+						checkCard.setAttribute('class', 'card open show');
+						checkArrey.push(liCards[i].firstChild.className);
+						console.log(liCards[i].firstChild.className);
+						console.log(checkArrey);
+						clicks += 1;
+						console.log(clicks);
+						//					comparison()
+					}
+					setTimeout(comparison, 1000);
 			}
 		});
 	}
@@ -66,25 +68,27 @@ function clickCard() {
  */
 
 function comparison() {
-	if (checkArrey.length === 2) {
-		if (checkArrey[0] === checkArrey[1]) {
-			open = document.querySelectorAll('.open');
-			for (let i = 0; i < open.length; i++) {
-				open[i].setAttribute('class', 'card match');
-			}
-			clicks = 0;
-			console.log('yes');
-		} else {
+	if (checkArrey.length == 2) {
+		if (checkArrey[0] !== checkArrey[1]) {
 			open = document.querySelectorAll('.open');
 			for (let i = 0; i < open.length; i++) {
 				open[i].classList.remove('open', 'show');
 			}
+			checkArrey = [];
 			clicks = 0;
 			console.log('no');
+		} else {
+			open = document.querySelectorAll('.open');
+			for (let i = 0; i < open.length; i++) {
+				open[i].setAttribute('class', 'card match');
+			}
+			checkArrey = [];
+			clicks = 0;
+			console.log('yes');
 		}
-		checkArrey = [];
 	}
 }
+
 
 /*
  *
