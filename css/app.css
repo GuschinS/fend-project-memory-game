@@ -75,11 +75,26 @@ h1 {
 	cursor: default;
 }
 
+.deck .card.red {
+	transform: rotateY(0);
+	background: #EE0E51;
+	cursor: default;
+	font-size: 33px;
+}
+
+.deck .card.white {
+	transform: rotateY(0);
+	background: #fff;
+	cursor: default;
+	font-size: 33px;
+}
+
 .deck .card.show {
 	font-size: 33px;
 }
 
 .deck .card.match {
+	transform: rotateY(0);
 	cursor: default;
 	background: #02ccba;
 	font-size: 33px;

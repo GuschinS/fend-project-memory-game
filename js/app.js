@@ -1,6 +1,9 @@
 /*
+ *
  * Create a list that holds all of your cards
+ *
  */
+
 const icons = ['diamond', 'paper-plane-o', 'anchor', 'bolt', 'cube', 'leaf', 'bicycle', 'bomb', 'diamond', 'paper-plane-o', 'anchor', 'bolt', 'cube', 'leaf', 'bicycle', 'bomb']
 
 /*
@@ -14,7 +17,6 @@ const deck = document.querySelector('.deck');
 const restart = document.querySelector('.restart');
 const mov = document.querySelector('.moves');
 const star = document.querySelector('.stars');
-//let open = document.querySelectorAll('.open');
 let clicks = 0;
 let moves = 0;
 let match = 0;
@@ -30,7 +32,7 @@ let checkArrey = [];
 function createCard() {
 	const cards = shuffle(icons);
 	for (var i = 0; i < cards.length; i++) {
-		const li = '<li class="card"><i class="fa fa-' + cards[i] + '"></i></li>';
+		const li = '<li class = "card"><i class = "fa fa-' + cards[i] + '"></i></li>';
 		deck.insertAdjacentHTML('beforeend', li);
 	};
 	liCards = document.querySelectorAll('.card');
@@ -48,8 +50,7 @@ function clickCard() {
 		liCards[i].addEventListener('click', function (event) {
 			event.preventDefault();
 			let checkCard = event.target;
-			if (checkCard.nodeName === 'LI' && checkCard.className !== 'card open show' && checkCard.className !== 'card match') {
-				console.log(checkCard.className)
+			if (checkCard.nodeName === 'LI' && checkCard.className !== 'card open show' && checkCard.className !== 'card match' && checkCard.className !== 'card red') {
 				if (clicks < 2) {
 					checkCard.setAttribute('class', 'card open show');
 					checkArrey.push(liCards[i].firstChild.className);
@@ -57,12 +58,10 @@ function clickCard() {
 					console.log(checkArrey);
 					clicks += 1;
 					console.log(clicks);
-
-					//					comparison()
 				}
 				setTimeout(function () {
 					comparison();
-				}, 2000);
+				}, 1000);
 			}
 		});
 	}
@@ -78,15 +77,15 @@ function comparison() {
 	end();
 	if (checkArrey.length == 2) {
 		moves += 1;
-		//		console.log(moves);
 		mov.textContent = moves;
 		stars();
-
-
 		if (checkArrey[0] !== checkArrey[1]) {
 			open = document.querySelectorAll('.open');
 			for (let i = 0; i < open.length; i++) {
-				open[i].classList.remove('open', 'show');
+				open[i].setAttribute('class', 'card red');
+				setTimeout(function () {
+					open[i].setAttribute('class', 'card')
+				}, 200);
 			}
 			checkArrey = [];
 			clicks = 0;
@@ -94,7 +93,10 @@ function comparison() {
 		} else {
 			open = document.querySelectorAll('.open');
 			for (let i = 0; i < open.length; i++) {
-				open[i].setAttribute('class', 'card match');
+				open[i].setAttribute('class', 'card white');
+				setTimeout(function () {
+					open[i].setAttribute('class', 'card match')
+				}, 200);
 			}
 			checkArrey = [];
 			clicks = 0;
@@ -103,7 +105,7 @@ function comparison() {
 			console.log(match);
 		}
 	}
-}
+};
 
 /*
  *
@@ -112,21 +114,21 @@ function comparison() {
  */
 
 function stars() {
-	const starar = star.getElementsByTagName('*');
+	const starar = star.getElementsByTagName('i');
 	for (i = 0; i < starar.length; i++) {
-		//		console.log(starar);
-		if (moves > 14) {
-			starar[5].className = 'fa fa-star';
-			if (moves > 19) {
-				starar[3].className = 'fa fa-star';
-				if (moves > 24) {
-					starar[1].className = 'fa fa-star';
-				}
-			}
+		if (moves > 14 && moves <= 19) {
+			starar[2].className = 'fa fa-star';
+		} else if (moves > 19 && moves <= 24) {
+			starar[1].className = 'fa fa-star';
+		} else if (moves > 24) {
+			starar[0].className = 'fa fa-star';
+		} else {
+			starar[0].className = 'fa fa-star-o';
+			starar[1].className = 'fa fa-star-o';
+			starar[2].className = 'fa fa-star-o';
 		}
 	}
-
-}
+};
 
 /*
  *
@@ -137,14 +139,16 @@ function stars() {
 function end() {
 	if (match === 8) {
 		deck.innerHTML = "";
+		alert('WIN! Moves ' + moves);
 		checkArrey = [];
 		clicks = 0;
 		match = 0;
-		setTimeout(function () {
-			createCard();
-		}, 2000);
+		moves = 0;
+		stars();
+		mov.textContent = moves;
+		createCard();
 	}
-}
+};
 
 /*
  *
@@ -153,14 +157,23 @@ function end() {
  */
 
 restart.addEventListener('click', function (event) {
+	const rest = confirm('Do you really want to restart?');
+	if (rest === false) {
+		returne(clickCard);
+	}
 	event.preventDefault();
 	deck.innerHTML = "";
 	checkArrey = [];
 	clicks = 0;
+	match = 0;
+	moves = 0;
+	stars();
+	mov.textContent = moves;
 	createCard();
-})
+};)
 
 // Shuffle function from http://stackoverflow.com/a/2450976
+
 function shuffle(array) {
 	var currentIndex = array.length,
 		temporaryValue, randomIndex;
