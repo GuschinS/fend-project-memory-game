@@ -12,8 +12,12 @@ const icons = ['diamond', 'paper-plane-o', 'anchor', 'bolt', 'cube', 'leaf', 'bi
 
 const deck = document.querySelector('.deck');
 const restart = document.querySelector('.restart');
+const mov = document.querySelector('.moves');
+const star = document.querySelector('.stars');
 //let open = document.querySelectorAll('.open');
 let clicks = 0;
+let moves = 0;
+let match = 0;
 let checkArrey = [];
 
 /*
@@ -45,17 +49,20 @@ function clickCard() {
 			event.preventDefault();
 			let checkCard = event.target;
 			if (checkCard.nodeName === 'LI' && checkCard.className !== 'card open show' && checkCard.className !== 'card match') {
-					console.log (checkCard.className)
-					if (clicks < 2) {
-						checkCard.setAttribute('class', 'card open show');
-						checkArrey.push(liCards[i].firstChild.className);
-						console.log(liCards[i].firstChild.className);
-						console.log(checkArrey);
-						clicks += 1;
-						console.log(clicks);
-						//					comparison()
-					}
-					setTimeout(comparison, 1000);
+				console.log(checkCard.className)
+				if (clicks < 2) {
+					checkCard.setAttribute('class', 'card open show');
+					checkArrey.push(liCards[i].firstChild.className);
+					console.log(liCards[i].firstChild.className);
+					console.log(checkArrey);
+					clicks += 1;
+					console.log(clicks);
+
+					//					comparison()
+				}
+				setTimeout(function () {
+					comparison();
+				}, 2000);
 			}
 		});
 	}
@@ -68,7 +75,14 @@ function clickCard() {
  */
 
 function comparison() {
+	end();
 	if (checkArrey.length == 2) {
+		moves += 1;
+		//		console.log(moves);
+		mov.textContent = moves;
+		stars();
+
+
 		if (checkArrey[0] !== checkArrey[1]) {
 			open = document.querySelectorAll('.open');
 			for (let i = 0; i < open.length; i++) {
@@ -85,10 +99,52 @@ function comparison() {
 			checkArrey = [];
 			clicks = 0;
 			console.log('yes');
+			match += 1;
+			console.log(match);
 		}
 	}
 }
 
+/*
+ *
+ * Stars
+ *
+ */
+
+function stars() {
+	const starar = star.getElementsByTagName('*');
+	for (i = 0; i < starar.length; i++) {
+		//		console.log(starar);
+		if (moves > 14) {
+			starar[5].className = 'fa fa-star';
+			if (moves > 19) {
+				starar[3].className = 'fa fa-star';
+				if (moves > 24) {
+					starar[1].className = 'fa fa-star';
+				}
+			}
+		}
+	}
+
+}
+
+/*
+ *
+ * End
+ *
+ */
+
+function end() {
+	if (match === 8) {
+		deck.innerHTML = "";
+		checkArrey = [];
+		clicks = 0;
+		match = 0;
+		setTimeout(function () {
+			createCard();
+		}, 2000);
+	}
+}
 
 /*
  *
