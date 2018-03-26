@@ -170,7 +170,7 @@ restart.addEventListener('click', function (event) {
 	stars();
 	mov.textContent = moves;
 	createCard();
-};)
+})
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 
