@@ -39,8 +39,8 @@ h1 {
  */
 
 .deck {
-	width: 660px;
-	min-height: 680px;
+	width: 50%;
+	min-height: 480px;
 	background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
 	padding: 32px;
 	border-radius: 10px;
@@ -59,6 +59,7 @@ h1 {
 	font-size: 0;
 	color: #ffffff;
 	border-radius: 8px;
+	margin: 1%;
 	cursor: pointer;
 	transform: rotateY(180deg);
 	transform-style: preserve-3d;
@@ -106,7 +107,7 @@ h1 {
 
 .score-panel {
 	text-align: left;
-	width: 345px;
+	width: 500px;
 	margin-bottom: 10px;
 }
 
