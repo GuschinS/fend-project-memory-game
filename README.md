@@ -12,7 +12,7 @@ The game is built using simple HTML, CSS and JavaScript. Click on the map to ope
 
 ## How to Play
 
-You just need to click on the [link] (https://htmlpreview.github.io/?https://github.com/GuschinS/fend-project-memory-game/blob/master/index.html) to start playing
+You just need to click on the [link](https://htmlpreview.github.io/?https://github.com/GuschinS/fend-project-memory-game/blob/master/index.html) to start playing
 
 ## Dependencies
 
