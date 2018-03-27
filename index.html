@@ -13,21 +13,34 @@
 </head>
 
 <body>
-	<div class="end"></div>
-	<div class="reset"></div>
+	<div id="end" style="display:none;">
+		<div id="gameover">
+			<div id="win">Congratulations!
+				<br>You won!</div>
+			<div class="moves">000</div>
+			<ul class="stars"></ul>
+			<input class="ok" type="submit" value="OK" onClick="getElementById('end').style.display='none';">
+		</div>
+	</div>
+	<div id="reset" style="display:none;">
+		<div id="res">Really want to restart?</div>
+		<input class="rok" type="submit" value="OK" onClick="getElementById('reset').style.display='none';">
+		<input class="cancel" type="button" name="cancel" value="CANCEL">
+	</div>
 	<div class="container">
 		<header>
 			<h1>Matching Game</h1>
 		</header>
 
 		<section class="score-panel">
-			<ul class="stars">
+			<ul id="stars">
 				<li><i class="fa fa-star-o"></i></li>
 				<li><i class="fa fa-star-o"></i></li>
 				<li><i class="fa fa-star-o"></i></li>
 			</ul>
 
-			<span class="moves">0</span> Moves
+			<span id="moves">0</span> Moves
+			<span id="time">00:00</span>
 
 			<div class="restart">
 				<i class="fa fa-repeat"></i>

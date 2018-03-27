@@ -15,11 +15,22 @@ const icons = ['diamond', 'paper-plane-o', 'anchor', 'bolt', 'cube', 'leaf', 'bi
 
 const deck = document.querySelector('.deck');
 const restart = document.querySelector('.restart');
-const mov = document.querySelector('.moves');
-const star = document.querySelector('.stars');
+const mov = document.querySelector('#moves');
+const movend = document.querySelector('.moves');
+const star = document.querySelector('#stars');
+const starend = document.querySelector('.stars');
+const cancel = document.querySelector('.cancel')
+//const resetok = document.querySelector('.rok');
+const rest = document.querySelector('#reset');
+const endGame = document.querySelector('#end');
+const time = document.querySelector('#time');
+
 let clicks = 0;
 let moves = 0;
 let match = 0;
+let starnum = 3;
+let seconds = 0;;
+
 let checkArrey = [];
 
 /*
@@ -49,6 +60,7 @@ function clickCard() {
 	for (let i = 0; i < liCards.length; i++) {
 		liCards[i].addEventListener('click', function (event) {
 			event.preventDefault();
+			updateTime();
 			let checkCard = event.target;
 			if (checkCard.nodeName === 'LI' && checkCard.className !== 'card open show' && checkCard.className !== 'card match' && checkCard.className !== 'card red') {
 				if (clicks < 2) {
@@ -102,7 +114,6 @@ function comparison() {
 			clicks = 0;
 			console.log('yes');
 			match += 1;
-			console.log(match);
 		}
 	}
 };
@@ -118,14 +129,18 @@ function stars() {
 	for (i = 0; i < starar.length; i++) {
 		if (moves > 14 && moves <= 19) {
 			starar[2].className = 'fa fa-star';
+			starnum = 2;
 		} else if (moves > 19 && moves <= 24) {
 			starar[1].className = 'fa fa-star';
+			starnum = 1;
 		} else if (moves > 24) {
 			starar[0].className = 'fa fa-star';
+			starnum = 0;
 		} else {
 			starar[0].className = 'fa fa-star-o';
 			starar[1].className = 'fa fa-star-o';
 			starar[2].className = 'fa fa-star-o';
+			starnum = 3;
 		}
 	}
 };
@@ -137,9 +152,11 @@ function stars() {
  */
 
 function end() {
-	if (match === 8) {
+	if (match === 2) {
 		deck.innerHTML = "";
-		alert('WIN! Moves ' + moves);
+		endGame.removeAttribute('style');
+		movend.textContent = moves + ' Moves';
+		starend.textContent = starnum + ' Stars';
 		checkArrey = [];
 		clicks = 0;
 		match = 0;
@@ -157,11 +174,13 @@ function end() {
  */
 
 restart.addEventListener('click', function (event) {
-	const rest = confirm('Do you really want to restart?');
-	if (rest === false) {
-		returne(clickCard);
-	}
 	event.preventDefault();
+	rest.removeAttribute('style');
+//	cancel.addEventListener('click', function (even) {
+//	even.preventDefault();
+//	clickCard();
+//		return ;
+//})
 	deck.innerHTML = "";
 	checkArrey = [];
 	clicks = 0;
@@ -171,6 +190,9 @@ restart.addEventListener('click', function (event) {
 	mov.textContent = moves;
 	createCard();
 })
+
+
+
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 
@@ -191,6 +213,34 @@ function shuffle(array) {
 
 
 createCard();
+
+
+//Stop timer count
+function endTimer() {
+    clearTimeout(timer);
+}
+
+//Count every second and update clock timer at score panel
+function counter() {
+    seconds++;
+    updateTime();
+
+    //Call itself in 1 second to update time again
+    timer = setTimeout(counter, 1000);
+}
+
+//Show current time at score panel
+function updateTime() {
+    time.textContent = elapsedTime();
+}
+
+//Format time value to 'mm:ss' format
+function elapsedTime() {
+    const min = Math.floor(seconds / 60);
+    const sec = seconds % 60;
+    return ((min < 10) ? "0" + min : min) + ":" + ((sec < 10) ? "0" + sec : sec);
+}
+
 
 /*
  * set up the event listener for a card. If a card is clicked:

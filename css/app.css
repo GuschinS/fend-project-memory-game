@@ -111,16 +111,20 @@ h1 {
 	margin-bottom: 10px;
 }
 
-.score-panel .stars {
+.score-panel #stars {
 	margin: 0;
 	padding: 0;
 	display: inline-block;
 	margin: 0 5px 0 0;
 }
 
-.score-panel .stars li {
+.score-panel #stars li {
 	list-style: none;
 	display: inline-block;
+}
+
+.score-panel #time {
+	margin-left: 15%;
 }
 
 .score-panel .restart {
@@ -132,15 +136,59 @@ h1 {
  * Modal Windows
  */
 
-.end,
-.reset {
-	display: none;
-	  position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 9999;
-      background: #aef;
-      opacity: 0.7;
+#end {
+	/*	display: none;*/
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: 999;
+	/*	border-radius: 0 0 90% 90%;*/
+	background: #fff;
+	opacity: 0.9;
+	text-align: center;
+}
+
+#reset {
+	/*	display: none;*/
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: 999;
+	/*	border-radius: 0 0 90% 90%;*/
+	background: #fff;
+	opacity: 0.9;
+	text-align: center;
+}
+
+
+#gameover,
+#res {
+	position: relative;
+	float: left;
+	top: 0;
+	left: 0;
+	width: 100%;
+
+	padding: 10%;
+	font-size: 3em;
+
+}
+
+.ok,
+.rok,
+.cancel {
+	width: 10em;
+	height: 4em;
+	border-radius: 10%;
+	z-index: 9999;
+
+}
+
+.ok:hover,
+.rok:hover {
+	background-color: #02ccba;
+}
+
+.cancel:hover {
+	background-color: #EE0E51;
 }
