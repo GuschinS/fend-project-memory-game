@@ -20,17 +20,15 @@ const movend = document.querySelector('.moves');
 const star = document.querySelector('#stars');
 const starend = document.querySelector('.stars');
 const cancel = document.querySelector('.cancel')
-//const resetok = document.querySelector('.rok');
 const rest = document.querySelector('#reset');
 const endGame = document.querySelector('#end');
 const time = document.querySelector('#time');
-
+const timeend = document.querySelector('.time');
 let clicks = 0;
 let moves = 0;
 let match = 0;
 let starnum = 3;
-let seconds = 0;;
-
+let seconds = 0;
 let checkArrey = [];
 
 /*
@@ -41,9 +39,10 @@ let checkArrey = [];
 
 
 function createCard() {
+	updateTime();
 	const cards = shuffle(icons);
 	for (var i = 0; i < cards.length; i++) {
-		const li = '<li class = "card"><i class = "fa fa-' + cards[i] + '"></i></li>';
+		const li = `<li class = "card"><i class = "fa fa-${cards[i]}"></i></li>`;
 		deck.insertAdjacentHTML('beforeend', li);
 	};
 	liCards = document.querySelectorAll('.card');
@@ -60,7 +59,6 @@ function clickCard() {
 	for (let i = 0; i < liCards.length; i++) {
 		liCards[i].addEventListener('click', function (event) {
 			event.preventDefault();
-			updateTime();
 			let checkCard = event.target;
 			if (checkCard.nodeName === 'LI' && checkCard.className !== 'card open show' && checkCard.className !== 'card match' && checkCard.className !== 'card red') {
 				if (clicks < 2) {
@@ -88,6 +86,7 @@ function clickCard() {
 function comparison() {
 	end();
 	if (checkArrey.length == 2) {
+		checkStart();
 		moves += 1;
 		mov.textContent = moves;
 		stars();
@@ -116,6 +115,7 @@ function comparison() {
 			match += 1;
 		}
 	}
+//	checkStart();
 };
 
 /*
@@ -157,12 +157,15 @@ function end() {
 		endGame.removeAttribute('style');
 		movend.textContent = moves + ' Moves';
 		starend.textContent = starnum + ' Stars';
+		timeend.textContent = `Your Time ${time.textContent}`;
 		checkArrey = [];
 		clicks = 0;
 		match = 0;
 		moves = 0;
+		seconds = 0;
 		stars();
 		mov.textContent = moves;
+		endTimer();
 		createCard();
 	}
 };
@@ -176,22 +179,17 @@ function end() {
 restart.addEventListener('click', function (event) {
 	event.preventDefault();
 	rest.removeAttribute('style');
-//	cancel.addEventListener('click', function (even) {
-//	even.preventDefault();
-//	clickCard();
-//		return ;
-//})
 	deck.innerHTML = "";
 	checkArrey = [];
 	clicks = 0;
 	match = 0;
 	moves = 0;
+	seconds = 0;
 	stars();
 	mov.textContent = moves;
+	endTimer();
 	createCard();
 })
-
-
 
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -214,31 +212,43 @@ function shuffle(array) {
 
 createCard();
 
+/*
+ *
+ * Timer
+ *
+ */
 
-//Stop timer count
+let timer;
+
+function checkStart() {
+	if (moves === 0) {
+		timer = setTimeout(counter, 1000);
+	}
+}
+
 function endTimer() {
-    clearTimeout(timer);
+	clearTimeout(timer);
 }
 
-//Count every second and update clock timer at score panel
+
 function counter() {
-    seconds++;
-    updateTime();
+	seconds++;
+	updateTime();
 
-    //Call itself in 1 second to update time again
-    timer = setTimeout(counter, 1000);
+
+	timer = setTimeout(counter, 1000);
 }
 
-//Show current time at score panel
+
 function updateTime() {
-    time.textContent = elapsedTime();
+	time.textContent = elapsedTime();
 }
 
-//Format time value to 'mm:ss' format
+
 function elapsedTime() {
-    const min = Math.floor(seconds / 60);
-    const sec = seconds % 60;
-    return ((min < 10) ? "0" + min : min) + ":" + ((sec < 10) ? "0" + sec : sec);
+	const min = Math.floor(seconds / 60);
+	const sec = seconds % 60;
+	return ((min < 10) ? "0" + min : min) + ":" + ((sec < 10) ? "0" + sec : sec);
 }
 
 

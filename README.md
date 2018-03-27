@@ -1,20 +1,19 @@
-# Memory Game Project
+# Welcome to the memory game!
 
 ## Table of Contents
 
 * [Instructions](#instructions)
-* [Contributing](#contributing)
+* [How to Play](#how_to_play)
+* [Dependencies](#dependencies)
 
 ## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+The game is built using simple HTML, CSS and JavaScript. Click on the map to open it. Maps will be flipped if the next card does not match the open one. Your score will depend on the moves taken to open all the cards. The less moves, the better.
 
-To get started, open `js/app.js` and start building out the app's functionality
+## How to Play
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+You just need to click on the [link] (https://htmlpreview.github.io/?https://github.com/GuschinS/fend-project-memory-game/blob/master/index.html) to start playing
 
-## Contributing
+## Dependencies
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+I create this game using my own dom methods to keep the code clean. It does not depend on third-party libraries. No more jQuery and Boostrap. Just HTML, CSS and JavaScript! I find that the new Udacity courses on ES6 are amazing!
