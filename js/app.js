@@ -152,7 +152,7 @@ function stars() {
  */
 
 function end() {
-	if (match === 2) {
+	if (match === 8) {
 		deck.innerHTML = "";
 		endGame.removeAttribute('style');
 		movend.textContent = moves + ' Moves';
