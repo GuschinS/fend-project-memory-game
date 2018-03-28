@@ -4,7 +4,7 @@
  *
  */
 
-const icons = ['diamond', 'paper-plane-o', 'anchor', 'bolt', 'cube', 'leaf', 'bicycle', 'bomb', 'diamond', 'paper-plane-o', 'anchor', 'bolt', 'cube', 'leaf', 'bicycle', 'bomb']
+const icons = ['diamond', 'paper-plane-o', 'anchor', 'bolt', 'cube', 'leaf', 'bicycle', 'bomb', 'diamond', 'paper-plane-o', 'anchor', 'bolt', 'cube', 'leaf', 'bicycle', 'bomb'];
 
 /*
  * Display the cards on the page
@@ -19,7 +19,7 @@ const mov = document.querySelector('#moves');
 const movend = document.querySelector('.moves');
 const star = document.querySelector('#stars');
 const starend = document.querySelector('.stars');
-const cancel = document.querySelector('.cancel')
+const cancel = document.querySelector('.cancel');
 const rest = document.querySelector('#reset');
 const endGame = document.querySelector('#end');
 const time = document.querySelector('#time');
@@ -44,10 +44,10 @@ function createCard() {
 	for (var i = 0; i < cards.length; i++) {
 		const li = `<li class = "card"><i class = "fa fa-${cards[i]}"></i></li>`;
 		deck.insertAdjacentHTML('beforeend', li);
-	};
+	}
 	liCards = document.querySelectorAll('.card');
 	clickCard();
-};
+}
 
 /*
  *
@@ -95,7 +95,7 @@ function comparison() {
 			for (let i = 0; i < open.length; i++) {
 				open[i].setAttribute('class', 'card red');
 				setTimeout(function () {
-					open[i].setAttribute('class', 'card')
+					open[i].setAttribute('class', 'card');
 				}, 200);
 			}
 			checkArrey = [];
@@ -106,7 +106,7 @@ function comparison() {
 			for (let i = 0; i < open.length; i++) {
 				open[i].setAttribute('class', 'card white');
 				setTimeout(function () {
-					open[i].setAttribute('class', 'card match')
+					open[i].setAttribute('class', 'card match');
 				}, 200);
 			}
 			checkArrey = [];
@@ -115,8 +115,7 @@ function comparison() {
 			match += 1;
 		}
 	}
-//	checkStart();
-};
+}
 
 /*
  *
@@ -128,22 +127,22 @@ function stars() {
 	const starar = star.getElementsByTagName('i');
 	for (i = 0; i < starar.length; i++) {
 		if (moves > 14 && moves <= 19) {
-			starar[2].className = 'fa fa-star';
+			starar[2].className = 'fa fa-star-o';
 			starnum = 2;
 		} else if (moves > 19 && moves <= 24) {
-			starar[1].className = 'fa fa-star';
-			starnum = 1;
-		} else if (moves > 24) {
-			starar[0].className = 'fa fa-star';
-			starnum = 0;
-		} else {
-			starar[0].className = 'fa fa-star-o';
 			starar[1].className = 'fa fa-star-o';
-			starar[2].className = 'fa fa-star-o';
+			starnum = 1;
+//		} else if (moves > 24) {
+//			starar[0].className = 'fa fa-star-o';
+//			starnum = 0;
+		} else {
+			starar[0].className = 'fa fa-star';
+			starar[1].className = 'fa fa-star';
+			starar[2].className = 'fa fa-star';
 			starnum = 3;
 		}
 	}
-};
+}
 
 /*
  *
@@ -168,7 +167,7 @@ function end() {
 		endTimer();
 		createCard();
 	}
-};
+}
 
 /*
  *
@@ -189,7 +188,7 @@ restart.addEventListener('click', function (event) {
 	mov.textContent = moves;
 	endTimer();
 	createCard();
-})
+});
 
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -207,7 +206,7 @@ function shuffle(array) {
 	}
 
 	return array;
-};
+}
 
 
 createCard();
