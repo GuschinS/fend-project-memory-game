@@ -33,7 +33,7 @@ let checkArrey = [];
 
 /*
  *
- * Create card
+ * Сreate mixed cards
  *
  */
 
@@ -51,7 +51,7 @@ function createCard() {
 
 /*
  *
- * Click card
+ * Select 2 cards for comparison
  *
  */
 
@@ -79,7 +79,7 @@ function clickCard() {
 
 /*
  *
- * Comparison
+ * Сomparison of selected cards
  *
  */
 
@@ -119,7 +119,7 @@ function comparison() {
 
 /*
  *
- * Stars
+ * Change star rating depending on the amount of moves
  *
  */
 
@@ -146,7 +146,7 @@ function stars() {
 
 /*
  *
- * End
+ * The end of the game when all the cards are guessed
  *
  */
 
@@ -192,6 +192,12 @@ restart.addEventListener('click', function (event) {
 
 
 // Shuffle function from http://stackoverflow.com/a/2450976
+
+/*
+ *
+ * Shuffle cards
+ *
+ */
 
 function shuffle(array) {
 	var currentIndex = array.length,
