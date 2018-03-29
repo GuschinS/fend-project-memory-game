@@ -1,6 +1,59 @@
-@media screen and (max-width: 1100px) and (min-width: 850px) {
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 823px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+	header {
+		display: none;
+	}
+}
+
+@media screen and (min-width: 1700px) {
+	.deck {
+		width: 49%;
+		height: 100%;
+	}
+	.deck .card {
+		height: 160px;
+		width: 160px;
+	}
+}
+@media screen and (max-width: 1699px) and (min-width: 1510px) {
+	.deck {
+		width: 55%;
+		height: 100%;
+	}
+	.deck .card {
+		height: 160px;
+		width: 160px;
+	}
+}
+
+@media screen and (max-width: 1509px) and (min-width: 1250px) {
 	.deck {
 		width: 60%;
+		height: 100%;
+	}
+	.deck .card {
+		height: 130px;
+		width: 130px;
+	}
+}
+
+@media screen and (max-width: 1249px) and (min-width: 1040px) {
+	.deck {
+		width: 63%;
+		height: 100%;
+	}
+	.deck .card {
+		height: 130px;
+		width: 130px;
+	}
+	.score-panel {
+		width: 50%;
+	}
+}
+
+@media screen and (max-width: 1039px) and (min-width: 850px) {
+	.deck {
+		width: 72%;
 		height: 100%;
 		padding: 2%;
 	}
@@ -16,13 +69,13 @@
 
 @media screen and (max-width: 849px) and (min-width: 800px) {
 	.deck {
-		width: 60%;
+		width: 75%;
 		height: 100%;
 		padding: 2%;
 	}
 	.deck .card {
-		height: 100px;
-		width: 100px;
+		height: 130px;
+		width: 130px;
 		margin: 1%;
 	}
 	.score-panel {
@@ -46,9 +99,9 @@
 	}
 }
 
-@media screen and (max-width: 759px) and (min-width: 600px) {
+@media screen and (max-width: 759px) and (min-width: 610px) {
 	.deck {
-		width: 61%;
+		width: 64%;
 		min-height: 100%;
 		padding: 1%;
 	}
@@ -62,9 +115,9 @@
 	}
 }
 
-@media screen and (max-width: 599px) and (min-width: 560px) {
+@media screen and (max-width: 609px) and (min-width: 500px) {
 	.deck {
-		width: 70%;
+		width: 73%;
 		min-height: 100%;
 		padding: 1%;
 	}
@@ -78,9 +131,9 @@
 	}
 }
 
-@media screen and (max-width: 559px) and (min-width: 350px) {
+@media screen and (max-width: 499px) and (min-width: 397px) {
 	.deck {
-		width: 77%;
+		width: 70%;
 		min-height: 100%;
 		padding: 2%;
 	}
@@ -105,15 +158,41 @@
 	}
 }
 
-@media screen and (max-width: 349px) and (min-width: 300px) {
+@media screen and (max-width: 396px)  and (min-width: 340px) {
+	.deck {
+		width: 80%;
+		min-height: 100%;
+		padding: 2%;
+	}
+	.deck .card {
+		height: 58px;
+		width: 58px;
+	}
+	.deck .card.show,
+	.deck .card.red,
+	.deck .card.white,
+	.deck .card.match {
+		font-size: 23px;
+	}
+	.score-panel {
+		width: 70%;
+	}
+	#gameover,
+	#res {
+		font-size: 2em;
+	}
+
+}
+
+@media screen and (max-width: 339px) {
 	.deck {
 		width: 90%;
 		min-height: 100%;
 		padding: 2%;
 	}
 	.deck .card {
-		height: 60px;
-		width: 60px;
+		height: 54px;
+		width: 54px;
 	}
 	.deck .card.show,
 	.deck .card.red,
