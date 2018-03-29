@@ -129,7 +129,7 @@ function stars() {
 		if (moves > 14 && moves <= 19) {
 			starar[2].className = 'fa fa-star-o';
 			starnum = 2;
-		} else if (moves > 19 && moves <= 24) {
+		} else if (moves > 19) {
 			starar[1].className = 'fa fa-star-o';
 			starnum = 1;
 //		} else if (moves > 24) {
